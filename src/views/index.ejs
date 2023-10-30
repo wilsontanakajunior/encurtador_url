@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Encurtador de url</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 pt-5">
+                <h1>Encurtador de Urls</h1>
+            </div>
+        </div>
+
+        <div>
+            <form method="post" action="/criar-url">
+                <div class="mb-3">
+                    <label for="urlId" class="form-label">Url completa</label>
+                    <input type="text" name="url" placeholder="Digite a URL a ser encurtada" required
+                        class="form-control" id="url" aria-describedby="url">
+                    <div id="emailHelp" class="form-text">Sua url será encurtada.</div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+
+        <div class="">
+            <div class="col-12 
+             text-center">
+                <h2>Lista de Urls cadastradas</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID url</th>
+                        <th scope="col">url original</th>
+                        <th scope="col">url encurtada</th>
+                        <th scope="col">data da criação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < urls.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= urls[i].id %>
+                            </td>
+                            <td>
+                                <%= urls[i].urlNormal %>
+                            </td>
+                            <td>
+                                <%= urls[i].urlEncurtada %>
+                            </td>
+                            <td>
+                                <%= new Intl.DateTimeFormat('pt-BR', { year: 'numeric' , month: '2-digit' ,
+                                    day: '2-digit' , hour: '2-digit' , minute: '2-digit' , second: '2-digit'
+                                    }).format(urls[i].createdAt) %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
